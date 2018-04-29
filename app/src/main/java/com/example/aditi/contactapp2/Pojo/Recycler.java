@@ -21,9 +21,19 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Recycler extends RecyclerView.Adapter<Recycler.MyViewHolder> {
     private List<Contact> mContactList;
     public CircleImageView contactImg;
+    private RecyclerViewClickListenerFav mListener;
+    public interface RecyclerViewClickListenerFav {
 
-    public Recycler(List<Contact> contactList) {
+        //if we want to on click the item index value
+        //void onClick(View view, int position);
+
+        //if we want the whole object to retrive the items
+        void onClick(Contact contacts);
+    }
+    public Recycler(List<Contact> contactList,RecyclerViewClickListenerFav
+            listener) {
         mContactList = contactList;
+        mListener = listener;
     }
 
 
@@ -55,9 +65,9 @@ public class Recycler extends RecyclerView.Adapter<Recycler.MyViewHolder> {
         return mContactList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public ImageView contactImg;
+        public CircleImageView  contactImg;
         public TextView txt_name, txt_phone;
 
 
@@ -66,7 +76,12 @@ public class Recycler extends RecyclerView.Adapter<Recycler.MyViewHolder> {
             contactImg = itemView.findViewById(R.id.profile_image);
             txt_name = itemView.findViewById(R.id.txt_name);
             txt_phone = itemView.findViewById(R.id.txt_phone);
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+
+        }
     }
 }

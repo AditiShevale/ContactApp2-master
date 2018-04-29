@@ -1,5 +1,6 @@
 package com.example.aditi.contactapp2;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-   private Recycler mRecyclerContact;
+   private Recycler mMyAdapter;
    private RecyclerView mRecyclerView;
    //private ProgressBar mProgressBar;
 
@@ -34,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mRecyclerView = findViewById(R.id.recyclerView);
-        //mProgressBar = findViewById(R.id.progressBar);
-
         RecyclerView.LayoutManager mLayoutManager = new
                 LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -95,12 +94,21 @@ public class MainActivity extends AppCompatActivity {
 //                    Toast.LENGTH_SHORT).show();
             super.onPostExecute(contactList);
             //mProgressBar.setVisibility(View.INVISIBLE);
-            mRecyclerContact = new Recycler(contactList);
+
             //Log.i("lo", String.valueOf(contactList));
-            mRecyclerView.setAdapter(mRecyclerContact);
-            mRecyclerContact.notifyDataSetChanged();
 
-
+            mMyAdapter = new Recycler(contactList,
+                    new Recycler.ListItemClickListener() {
+                @Override
+                public void onClick(Contact contacts) {
+                    Intent i = new Intent(MainActivity.this,
+                            DetailActivity.class);
+                    i.putExtra("parcel", contacts);
+                    startActivity(i);
+                }
+            });
+            mRecyclerView.setAdapter(mMyAdapter);
+            mMyAdapter.notifyDataSetChanged();
         }
     }
 

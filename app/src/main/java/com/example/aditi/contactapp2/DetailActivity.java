@@ -28,7 +28,7 @@ public class DetailActivity extends Activity {
         txt_number = findViewById(R.id.txt_detail_number);
         img_dp = findViewById(R.id.img_detail);
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         Contact contacts = getIntent().getParcelableExtra("parcel");

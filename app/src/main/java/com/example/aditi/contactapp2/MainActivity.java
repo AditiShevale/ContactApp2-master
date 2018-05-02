@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(List<Contact> contactList) {
+        protected void onPostExecute(final List<Contact> contactList) {
 //            Toast.makeText(MainActivity.this, String.valueOf(contactList),
 //                    Toast.LENGTH_SHORT).show();
             super.onPostExecute(contactList);
@@ -97,18 +97,18 @@ public class MainActivity extends AppCompatActivity {
 
             //Log.i("lo", String.valueOf(contactList));
 
-            mMyAdapter = new Recycler(contactList,
-                    new Recycler.ListItemClickListener() {
-                @Override
-                public void onClick(Contact contacts) {
-                    Intent i = new Intent(MainActivity.this,
-                            DetailActivity.class);
-                    i.putExtra("parcel", contacts);
-                    startActivity(i);
-                }
-            });
-            mRecyclerView.setAdapter(mMyAdapter);
-            mMyAdapter.notifyDataSetChanged();
+           mMyAdapter = new Recycler(MainActivity.this, contactList,
+                   new Recycler.RecyclerViewClickListenerFav() {
+                       @Override
+                       public void onListItemClick(Contact contacts) {
+                           Intent intent = new Intent(MainActivity.this,
+                                   DetailActivity.class);
+                           intent.putExtra("parcel",contacts);
+                           startActivity(intent);
+                       }
+                   });
+           mRecyclerView.setAdapter(mMyAdapter);
+           mMyAdapter.notifyDataSetChanged();
         }
     }
 

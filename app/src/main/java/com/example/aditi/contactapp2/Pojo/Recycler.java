@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.aditi.contactapp2.MainActivity;
 import com.example.aditi.contactapp2.R;
 import com.squareup.picasso.Picasso;
 
@@ -22,15 +23,15 @@ public class Recycler extends RecyclerView.Adapter<Recycler.MyViewHolder> {
     private List<Contact> mContactList;
     public CircleImageView contactImg;
     private RecyclerViewClickListenerFav mListener;
+
+
+
     public interface RecyclerViewClickListenerFav {
 
-        //if we want to on click the item index value
-        //void onClick(View view, int position);
-
-        //if we want the whole object to retrive the items
-        void onClick(Contact contacts);
+        void onListItemClick(Contact contacts);
     }
-    public Recycler(List<Contact> contactList,RecyclerViewClickListenerFav
+
+    public Recycler(MainActivity mainActivity, List<Contact> contactList, RecyclerViewClickListenerFav
             listener) {
         mContactList = contactList;
         mListener = listener;
@@ -39,7 +40,7 @@ public class Recycler extends RecyclerView.Adapter<Recycler.MyViewHolder> {
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public Recycler.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.custom_list, parent, false);
         return new MyViewHolder(itemView);
@@ -58,6 +59,8 @@ public class Recycler extends RecyclerView.Adapter<Recycler.MyViewHolder> {
         holder.txt_phone.setText(contact.getContact());
 
         holder.contactImg.setImageURI(Uri.parse(contact.getImage()));
+
+        holder.bind(mContactList.get(position),mListener);
     }
 
     @Override
@@ -65,10 +68,13 @@ public class Recycler extends RecyclerView.Adapter<Recycler.MyViewHolder> {
         return mContactList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+
+    public class MyViewHolder extends RecyclerView.ViewHolder  {
 
         public CircleImageView  contactImg;
         public TextView txt_name, txt_phone;
+
 
 
         public MyViewHolder(View itemView) {
@@ -76,12 +82,19 @@ public class Recycler extends RecyclerView.Adapter<Recycler.MyViewHolder> {
             contactImg = itemView.findViewById(R.id.profile_image);
             txt_name = itemView.findViewById(R.id.txt_name);
             txt_phone = itemView.findViewById(R.id.txt_phone);
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View v) {
 
         }
+
+
+        public void bind(final Contact contact, final RecyclerViewClickListenerFav listener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onListItemClick(contact);
+                }
+            });
+        }
+
+
     }
 }

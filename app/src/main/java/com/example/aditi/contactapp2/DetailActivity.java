@@ -1,6 +1,7 @@
 package com.example.aditi.contactapp2;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.preference.Preference;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,7 +48,11 @@ public class DetailActivity extends Activity {
     }
 
     public void addToFav(View view) {
-//        if (name != null && )
+        if (name != null && phone !=null && image != null){
+            ContentValues cv = new ContentValues();
+
+
+        }
     }
 
 }

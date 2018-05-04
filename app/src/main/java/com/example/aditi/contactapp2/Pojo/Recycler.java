@@ -31,7 +31,7 @@ public class Recycler extends RecyclerView.Adapter<Recycler.MyViewHolder> {
         void onListItemClick(Contact contacts);
     }
 
-    public Recycler(MainActivity mainActivity, List<Contact> contactList, RecyclerViewClickListenerFav
+    public Recycler( List<Contact> contactList, RecyclerViewClickListenerFav
             listener) {
         mContactList = contactList;
         mListener = listener;

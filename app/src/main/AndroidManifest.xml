@@ -18,7 +18,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailActivity"></activity>
+
+        <provider
+            android:authorities="com.example.aditi.contactapp2"
+            android:name="com.example.aditi.contactapp2.Database.MyContentProvider"
+            android:enabled="true"
+            android:exported="true"/>
+
+
+        <activity android:name=".DetailActivity">
+
+        </activity>
     </application>
 
 </manifest>

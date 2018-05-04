@@ -37,7 +37,7 @@ public class Network {
     }
 
 
-    public static URL buildUrl(String sort){
+    public static URL buildUrl(){
         Uri builtUri = Uri.parse(BASE_URL).buildUpon()
                 .build();
         Log.i("adzi", String.valueOf(builtUri));
@@ -97,6 +97,7 @@ public class Network {
 
         return contacts;
     }
+
 
 
 }

@@ -20,14 +20,16 @@
         </activity>
 
         <provider
+            android:name=".Database.MyContentProvider"
             android:authorities="com.example.aditi.contactapp2"
-            android:name="com.example.aditi.contactapp2.Database.MyContentProvider"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
 
-
-        <activity android:name=".DetailActivity">
-
+        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".SharedPref.Settings">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
         </activity>
     </application>
 

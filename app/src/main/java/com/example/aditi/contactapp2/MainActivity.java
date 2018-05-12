@@ -2,6 +2,7 @@ package com.example.aditi.contactapp2;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -32,7 +33,7 @@ import java.net.URL;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager
-        .LoaderCallbacks<Cursor> {
+        .LoaderCallbacks<Cursor>, SharedPreferences.OnSharedPreferenceChangeListener {
 
    private Recycler mMyAdapter;
    private RecyclerView mRecyclerView;
@@ -116,6 +117,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
     @Override
     public void onLoaderReset(@NonNull Loader<Cursor> loader) {
         mFavAdapter.swapCursor(null);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+
     }
 
     private class MovieDBQueryTask extends AsyncTask<URL,Void,List<Contact>> {

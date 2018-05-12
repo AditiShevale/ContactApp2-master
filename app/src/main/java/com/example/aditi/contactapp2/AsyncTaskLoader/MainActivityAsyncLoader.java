@@ -30,6 +30,7 @@ import static android.support.v7.widget.DividerItemDecoration.HORIZONTAL;
 
 public class MainActivityAsyncLoader extends AppCompatActivity
 implements LoaderManager.LoaderCallbacks<List<Contact>>{
+
     private RecyclerView mRecyclerView;
     private Recycler mMyAdapter;
     private String URL_EXTRA = "nomac";

@@ -56,11 +56,7 @@ public class Recycler extends RecyclerView.Adapter<Recycler.MyViewHolder> {
         Log.i("xyz", String.valueOf(contact.getImage()
         ));
         holder.txt_name.setText(contact.getName());
-        holder.txt_phone.setText(contact.getContact());
 
-        holder.contactImg.setImageURI(Uri.parse(contact.getImage()));
-
-        holder.bind(mContactList.get(position),mListener);
     }
 
     @Override
@@ -70,10 +66,10 @@ public class Recycler extends RecyclerView.Adapter<Recycler.MyViewHolder> {
 
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder  {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public CircleImageView  contactImg;
-        public TextView txt_name, txt_phone;
+        public TextView txt_name;
 
 
 
@@ -81,20 +77,19 @@ public class Recycler extends RecyclerView.Adapter<Recycler.MyViewHolder> {
             super(itemView);
             contactImg = itemView.findViewById(R.id.profile_image);
             txt_name = itemView.findViewById(R.id.txt_name);
-            txt_phone = itemView.findViewById(R.id.txt_phone);
+           itemView.setOnClickListener(this);
 
         }
 
 
-        public void bind(final Contact contact, final RecyclerViewClickListenerFav listener) {
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    listener.onListItemClick(contact);
-                }
-            });
+
+
+
+        @Override
+        public void onClick(View v) {
+            int adapterPosition = getAdapterPosition();
+            Contact clicked =  mContactList.get(adapterPosition);
+            mListener.onListItemClick(clicked);
         }
-
-
     }
 }

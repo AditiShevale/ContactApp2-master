@@ -59,9 +59,13 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.MyViewHolder>{
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         if (!mCursor.moveToPosition(position))
             return;
-        String name = mCursor.getString(mCursor.getColumnIndex(Contract.Fav.COLUMN_NAME));
-        String phone = mCursor.getString(mCursor.getColumnIndex(Contract.Fav.COLUMN_PHONE));
-        String image = mCursor.getString(mCursor.getColumnIndex(Contract.Fav.COLUMN_IMAGE));
+        String name = mCursor.getString(mCursor.getColumnIndex(Contract
+                .Fav.COLUMN_NAME));
+        String phone = mCursor.getString(mCursor.getColumnIndex(Contract
+                .Fav.COLUMN_PHONE));
+        String image = mCursor.getString(mCursor.getColumnIndex(Contract
+                .Fav.COLUMN_IMAGE));
+        Log.i("ad",image);
 
         int id = mCursor.getInt(mCursor.getColumnIndex(Contract.Fav._ID));
 

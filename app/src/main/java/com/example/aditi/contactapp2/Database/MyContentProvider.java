@@ -112,13 +112,14 @@ public class MyContentProvider extends ContentProvider {
         int match = sUriMatcher.match(uri);
         int tasksDeleted; // starts as 0
 
+
         switch (match) {
-            // Handle the single item case, recognized by the ID included in the URI path
             case TASK_WITH_ID:
                 // Get the task ID from the URI path
                 String id = uri.getPathSegments().get(1);
                 // Use selections/selectionArgs to filter for this ID
-                tasksDeleted = db.delete(Contract.Fav.TABLE_NAME, "_id=?", new String[]{id});
+                tasksDeleted = db.delete(Contract.Fav.TABLE_NAME, "_id=?",
+                        new String[]{id});
                 break;
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
@@ -130,7 +131,7 @@ public class MyContentProvider extends ContentProvider {
             getContext().getContentResolver().notifyChange(uri, null);
         }
 
-        // Return the number of tasks deleted
+        // Return the number of tasks deletedfile:///usr/lib/slack/resources/app.asar/src/static/logo_spinner.webp
         return tasksDeleted;
 
 

@@ -46,7 +46,8 @@ public class Contact implements Parcelable {
         this.mImage=in.readString();
     }
 
-    public static final Creator<Contact> CREATOR = new Creator<Contact>() {
+    public static final Parcelable.Creator<Contact> CREATOR = new Parcelable.
+            Creator<Contact>() {
         @Override
         public Contact createFromParcel(Parcel in) {
             return new Contact(in);

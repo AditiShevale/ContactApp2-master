@@ -161,8 +161,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
     }
 
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
